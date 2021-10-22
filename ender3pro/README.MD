@@ -82,3 +82,9 @@ not to scratch the bed by jumping large values
 M851 Z(value of Z from step 6)
 M500 ; Save to EEPROM
 ```
+
+To test the new base offset:
+```gcode
+G28    ; home all axis
+G1 Z0  ; nozzle should be at right position
+```
