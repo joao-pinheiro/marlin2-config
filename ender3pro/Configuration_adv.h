@@ -30,7 +30,7 @@
  *
  * Basic settings can be found in Configuration.h
  */
-#define CONFIGURATION_ADV_H_VERSION 02000902
+#define CONFIGURATION_ADV_H_VERSION 02010000
 
 //===========================================================================
 //============================= Thermal Settings ============================
@@ -670,29 +670,30 @@
 //
 // For Z set the number of stepper drivers
 //
-#define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many
+//#define NUM_Z_STEPPER_DRIVERS 1   // (1-4) Z options change based on how many
 
-#if NUM_Z_STEPPER_DRIVERS > 1
-  // Enable if Z motor direction signals are the opposite of Z1
-  //#define INVERT_Z2_VS_Z_DIR
-  //#define INVERT_Z3_VS_Z_DIR
-  //#define INVERT_Z4_VS_Z_DIR
+#if ENABLED(NUM_Z_STEPPER_DRIVERS)
+  #if NUM_Z_STEPPER_DRIVERS > 1
+    // Enable if Z motor direction signals are the opposite of Z1
+    //#define INVERT_Z2_VS_Z_DIR
+    //#define INVERT_Z3_VS_Z_DIR
+    //#define INVERT_Z4_VS_Z_DIR
 
-  //#define Z_MULTI_ENDSTOPS
-  #if ENABLED(Z_MULTI_ENDSTOPS)
-    #define Z2_USE_ENDSTOP          _XMAX_
-    #define Z2_ENDSTOP_ADJUSTMENT   0
-    #if NUM_Z_STEPPER_DRIVERS >= 3
-      #define Z3_USE_ENDSTOP        _YMAX_
-      #define Z3_ENDSTOP_ADJUSTMENT 0
-    #endif
-    #if NUM_Z_STEPPER_DRIVERS >= 4
-      #define Z4_USE_ENDSTOP        _ZMAX_
-      #define Z4_ENDSTOP_ADJUSTMENT 0
+    //#define Z_MULTI_ENDSTOPS
+    #if ENABLED(Z_MULTI_ENDSTOPS)
+      #define Z2_USE_ENDSTOP          _XMAX_
+      #define Z2_ENDSTOP_ADJUSTMENT   0
+      #if NUM_Z_STEPPER_DRIVERS >= 3
+        #define Z3_USE_ENDSTOP        _YMAX_
+        #define Z3_ENDSTOP_ADJUSTMENT 0
+      #endif
+      #if NUM_Z_STEPPER_DRIVERS >= 4
+        #define Z4_USE_ENDSTOP        _ZMAX_
+        #define Z4_ENDSTOP_ADJUSTMENT 0
+      #endif
     #endif
   #endif
 #endif
-
 // Drive the E axis with two synchronized steppers
 //#define E_DUAL_STEPPER_DRIVERS
 #if ENABLED(E_DUAL_STEPPER_DRIVERS)
@@ -3797,7 +3798,7 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-//#define HOST_ACTION_COMMANDS
+#define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
   //#define HOST_PROMPT_SUPPORT
   //#define HOST_START_MENU_ITEM  // Add a menu item that tells the host to start
