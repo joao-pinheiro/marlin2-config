@@ -1,8 +1,8 @@
 Marlin 2.0.x Configuration for Ender3 Pro w/ SKR 32 bit & AutoLev
 =====
 
-My Ender3 Pro Marlin configuration w/Autolevel
-Tested with bugfix-2.0.x, marlin-2.0.9.1
+My Ender3 Pro Marlin configuration w/Autolev
+Tested with marlin-2.1
 
 
 ## Tunables that should be enabled
