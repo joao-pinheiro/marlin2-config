@@ -24,7 +24,7 @@
 #define CONFIG_EXAMPLES_DIR "Two Trees/Sapphire Plus/Sapphire Plus V2"
 
 //#define SAPPHIRE_PLUS_MKS_UI
-//#define SAPPHIRE_PLUS_BLTOUCH
+#define SAPPHIRE_PLUS_BLTOUCH
 //#define SAPPHIRE_PLUS_TMC_UART
 
 /**
@@ -41,7 +41,7 @@
  *
  * Advanced settings can be found in Configuration_adv.h
  */
-#define CONFIGURATION_H_VERSION 02010000
+#define CONFIGURATION_H_VERSION 02000904
 
 //===========================================================================
 //============================= Getting Started =============================
@@ -102,7 +102,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_MKS_ROBIN_NANO_V1_3_F4
+  #define MOTHERBOARD BOARD_MKS_ROBIN_NANO
 #endif
 
 /**
@@ -173,12 +173,12 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  TERN(SAPPHIRE_PLUS_TMC_UART,TMC2208,TMC2208_STANDALONE)
-#define Y_DRIVER_TYPE  TERN(SAPPHIRE_PLUS_TMC_UART,TMC2208,TMC2208_STANDALONE)
-#define Z_DRIVER_TYPE  A4988
+#define X_DRIVER_TYPE  TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
+#define Y_DRIVER_TYPE  TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
+#define Z_DRIVER_TYPE  TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-#define Z2_DRIVER_TYPE A4988
+#define Z2_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
 //#define I_DRIVER_TYPE  A4988
@@ -187,7 +187,7 @@
 //#define U_DRIVER_TYPE  A4988
 //#define V_DRIVER_TYPE  A4988
 //#define W_DRIVER_TYPE  A4988
-#define E0_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2208,TMC2208_STANDALONE)
+#define E0_DRIVER_TYPE TERN(SAPPHIRE_PLUS_TMC_UART,TMC2209,TMC2209_STANDALONE)
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -1846,17 +1846,17 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LEVEL_BED_CORNERS
+#define LCD_BED_TRAMMING
 
-#if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET_LFRB { 35, 35, 35, 35 } // (mm) Left, Front, Right, Back insets
-  #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
-  #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
+#if ENABLED(LCD_BED_TRAMMING)
+  #define BED_TRAMMING_INSET_LFRB { 35, 35, 35, 35 } // (mm) Left, Front, Right, Back insets
+  #define BED_TRAMMING_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
+  #define BED_TRAMMING_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
   //#define LEVEL_CENTER_TOO              // Move to the center after the last corner
-  //#define LEVEL_CORNERS_USE_PROBE
-  #if ENABLED(LEVEL_CORNERS_USE_PROBE)
-    #define LEVEL_CORNERS_PROBE_TOLERANCE 0.1
-    #define LEVEL_CORNERS_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
+  //#define BED_TRAMMING_USE_PROBE
+  #if ENABLED(BED_TRAMMING_USE_PROBE)
+    #define BED_TRAMMING_PROBE_TOLERANCE 0.1
+    #define BED_TRAMMING_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
     //#define LEVEL_CORNERS_AUDIO_FEEDBACK
   #endif
 
@@ -1877,7 +1877,7 @@
    *  |  1       2  |   | 1         4 |    | 1         2 |   | 2           |
    *  LF --------- RF   LF --------- RF    LF --------- RF   LF --------- RF
    */
-  #define LEVEL_CORNERS_LEVELING_ORDER { LF, RF, RB, LB }
+  #define BED_TRAMMING_LEVELING_ORDER { LF, RF, RB, LB }
 #endif
 
 /**
